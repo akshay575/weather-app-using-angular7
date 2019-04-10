@@ -1,0 +1,51 @@
+<div class="container weather-block">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6 weather-form">
+      <h3>Current weather and forecast</h3>
+      <form (ngSubmit)="onSearch(f.value.city)" #f="ngForm">
+        <div class="form-group">
+          <input type="text" class="form-control" name="city" ngModel ng placeholder="Enter a city name, such as Bangalore">
+        </div>
+        <button type="submit" class="btn btn-primary">Get Weather</button>
+      </form>
+    </div>
+    <div class="col-12">
+      {{ days }}
+      <ngb-tabset>
+        <ngb-tab *ngFor="let day of days; let i=index" [title]="day">
+
+          <ng-template ngbTabContent>
+            <div class="row">
+                <br>
+              
+              <ng-container *ngFor="let weather of weatherData">
+                <div class="col-4" *ngIf="weather.date.substring(0, 11) === day">
+                  <br>
+                  <div class="card" >
+                    <div class="card-header text-white bg-primary">
+                      {{ weather.date }}
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        {{"Min. Temp. (in Celcius): " + weather.min_temp}}
+                        <br /> {{"Max. Temp. (in Celcius): " + weather.max_temp}}
+                        <br /> {{"Humidity: " + weather.humidity}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </ng-template>
+
+
+        </ngb-tab>
+
+      </ngb-tabset>
+
+
+
+    </div>
+  </div>
+</div>
