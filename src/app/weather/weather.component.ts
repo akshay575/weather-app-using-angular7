@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-weather',
@@ -18,7 +19,7 @@ export class WeatherComponent implements OnInit {
   onSearch(city: String) {
     let isNew = true;
     this.http.get(`http://api.openweathermap.org/data/2.5/forecast?appid=8073806a0586530b5a4adf67e8467a05&units=metric&q=${city}`)
-      .subscribe((data) => {
+      .subscribe((data: Data) => {
         data.list.forEach((item) => {
 
           let obj = {
